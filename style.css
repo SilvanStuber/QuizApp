@@ -14,7 +14,7 @@ body {
 
 .card-container {
   height: 70vh;
-  width: 80vw;
+  width: 60vw !important;
 }
 
 .card-selection {
@@ -24,6 +24,7 @@ body {
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  width: 20% !important;
 }
 
 .logo-quizapp {
@@ -55,9 +56,36 @@ body {
   border-left: 4px solid white;
 }
 
+.card-title {
+  font-size: 32px;
+  padding-bottom: 12px;
+}
+
 .answer-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 80% !important;
+    margin-top: 24px !important;
 }
+
+.answer-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+}
+
+
+.letter-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 32px;
+  height: 32px;
+  font-size: 12px;
+}
+
