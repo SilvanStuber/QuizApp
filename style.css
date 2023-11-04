@@ -70,12 +70,18 @@ body {
     margin-top: 24px !important;
 }
 
-.answer-card {
+.answer-content {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 12px;
   font-size: 12px;
+  cursor: pointer;
+  transition: all 125ms ease-in-out;
+}
+
+.answer-card:hover {
+  transform: scale(1.1);
 }
 
 
@@ -87,5 +93,21 @@ body {
   width: 32px;
   height: 32px;
   font-size: 12px;
+}
+
+.footer-card {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.arrow {
+  height: 32px;
+  cursor: pointer;
+  transition: all 125ms ease-in-out;
+}
+
+.arrow:hover {
+  transform: scale(1.1);
 }
 
