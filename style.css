@@ -72,16 +72,16 @@ body {
   align-items: center;
   flex-direction: column;
   width: 80% !important;
-  background-color: rgb(247,247,246);
+  background-color: rgb(247, 247, 246);
   object-fit: cover;
 }
 
-.answer-container{
+.answer-container {
   width: 80% !important;
 }
 
 .answer-card:hover {
-  transform: scale(1.1);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .answer-content {
@@ -98,7 +98,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(24,60,232, 0.2);
   width: 32px;
   height: 32px;
   font-size: 12px;

@@ -229,4 +229,6 @@ let questsionsGeology = [
     "right_answer": 4,
   },
 ];
+
+let whichQuiz = [];
  
