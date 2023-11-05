@@ -12,14 +12,19 @@ body {
   align-items: center;
 }
 
+.home-page-background {
+  width: 80%;
+  height: 60vh;
+}
+
 .card-container {
   height: 70vh;
   width: 60vw !important;
+  border-radius: 6px !important;
 }
 
 .card-selection {
   background-color: rgb(24, 60, 232);
-  border-radius: 6px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -66,13 +71,13 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 70% !important;
-  margin-top: 12px !important;
-  padding-left: 96px !important;
+  width: 80% !important;
+  background-color: rgb(247,247,246);
+  object-fit: cover;
 }
 
 .answer-container{
-  width: 100% !important;
+  width: 80% !important;
 }
 
 .answer-card:hover {
@@ -87,7 +92,6 @@ body {
   font-size: 12px;
   cursor: pointer;
   transition: all 125ms ease-in-out;
-
 }
 
 .letter-card {
