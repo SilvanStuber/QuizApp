@@ -98,10 +98,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(24,60,232, 0.2);
+  background-color: rgba(24,60,232, 0.8);
+  color: white;
   width: 32px;
   height: 32px;
   font-size: 12px;
+  z-index: 2;
 }
 
 .footer-card {
@@ -121,4 +123,8 @@ body {
 
 .arrow:hover {
   transform: scale(1.1);
+}
+
+.bg-success, .bg-danger {
+ color: white !important;
 }
