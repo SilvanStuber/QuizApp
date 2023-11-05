@@ -62,12 +62,16 @@ body {
 }
 
 .answer-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 80% !important;
-    margin-top: 24px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80% !important;
+  margin-top: 24px !important;
+}
+
+.answer-card:hover {
+  transform: scale(1.1);
 }
 
 .answer-content {
@@ -79,11 +83,6 @@ body {
   cursor: pointer;
   transition: all 125ms ease-in-out;
 }
-
-.answer-card:hover {
-  transform: scale(1.1);
-}
-
 
 .letter-card {
   display: flex;
@@ -105,9 +104,10 @@ body {
   height: 32px;
   cursor: pointer;
   transition: all 125ms ease-in-out;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 .arrow:hover {
   transform: scale(1.1);
 }
-
