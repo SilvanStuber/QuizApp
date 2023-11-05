@@ -8,7 +8,7 @@
     <title>QuizApp</title>
 
     <link rel="stylesheet" href="style.css" />
-    <script src="./js/script.js"></script>
+    <script src="./js/script.js" ></script>
     <script src="./js/data.js"></script>
 
     <!--Bootstrap file-->
@@ -36,22 +36,22 @@
           <div class="col-md-4 card-selection">
             <img class="logo-quizapp" src="./img/logo 2.png" alt="logo" />
             <div class="category-container">
-              <span class="category"><b>Rubrik1</b></span>
-              <span class="category"><b>Rubrik2</b></span>
-              <span class="category"><b>Rubrik3</b></span>
-              <span class="category"><b>Rubrik4</b></span>
+              <span class="category" onclick="startQuiz(questsionsElectronics)"><b>Elektronik</b></span>
+              <span class="category" onclick="startQuiz(questsionsBiology)"><b>Biologie</b></span>
+              <span class="category" onclick="startQuiz(questsionsAnimals)"><b>Tiere</b></span>
+              <span class="category" onclick="startQuiz(questsionsGeology)"><b>Geologie</b></span>
             </div>
           </div>
-          <div class="col-md-8 p-2 answer-container">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
+          <div class="col-md-8 question-answer-container">
+            <div class="card-body answer-container">
+              <h5 class="card-title" id="questiontext">Card title</h5>
               <div class="card mt-4 answer-card">
                 <div class="card-body answer-content">
                   <div class="letter-card">
                     <b>A</b>
                   </div>
                   <div>
-                    <b>T.</b>
+                    <b id="answer1">T.</b>
                   </div>
                 </div>
               </div>
@@ -60,7 +60,7 @@
                   <div class="letter-card">
                     <b>B</b>
                   </div>
-                  <b>This is some text within a card body.</b>
+                  <b id="answer2">This is some text within a card body.</b>
                 </div>
               </div>
               <div class="card mt-4 answer-card">
@@ -68,7 +68,7 @@
                   <div class="letter-card">
                     <b>C</b>
                   </div>
-                  <b>This is some text within a card body.</b>
+                  <b id="answer3">This is some text within a card body.</b>
                 </div>
               </div>
               <div class="card mt-4 answer-card">
@@ -76,13 +76,15 @@
                   <div class="letter-card">
                     <b>D</b>
                   </div>
-                  <b>This is some text within a card body.</b>
+                  <b id="answer4">This is some text within a card body.</b>
                 </div>
               </div>
             </div>
             <div class="footer-card">
               <img class="arrow" src="./img/arrowleft.png" alt="arrowleft." />
-              <b>Frage 1 von 5</b>
+              <div>
+                <b>1</b> von <b id="all-questions">5</b> Fragen
+              </div>
               <img class="arrow" src="./img/arrowright.png" alt="arrowright" />
             </div>
           </div>
