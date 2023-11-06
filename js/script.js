@@ -1,21 +1,19 @@
 function init() {
   load()
-  document.getElementById('content').innerHTML = generateHomePage();
+  document.getElementById('content').innerHTML = generateHomePage(); //load start screen
 }
 
-function startQuiz(i) {
-  let questions = i;
-  document.getElementById('content').innerHTML = generaterQuizContent(questions);
-  document.getElementById('all-questions').innerHTML = questions.length - 1;
+function startQuiz(questions) {
+  document.getElementById('content').innerHTML = generaterQuizContent(questions); 
+  document.getElementById('all-questions').innerHTML = questions.length - 1; //generates the number of questions based on the quiz
   showQuestion(questions);
   whichQuiz = [];
   whichQuiz.push(questions);
   save();
 }
 
-function showQuestion(questions) {
-  
-  let question = whichQuestion(questions);
+function showQuestion(questions) { //loads the corresponding quiz
+  let question = whichQuestion(questions); 
   document.getElementById('questiontext').innerHTML = question['question'];
   document.getElementById('answer_1').innerHTML = question['answer_1'];
   document.getElementById('answer_2').innerHTML = question['answer_2'];
@@ -23,35 +21,71 @@ function showQuestion(questions) {
   document.getElementById('answer_4').innerHTML = question['answer_4'];
 }
 
-function whichQuestion(questions) {
-  let valueFromQuestion = questions[0]['currentQuestion'];
+function whichQuestion(questions) {  
+  let valueFromQuestion = questions[0]['currentQuestion']; //defines which quiz and the corresponding question
   let question = questions[valueFromQuestion];
   return (question);
 }
 
 function answer(selection) {
-  let questions = whichQuiz;
-  let question = whichQuestion(questions[0]);
-  let selectedQuestionNumber = selection.slice(-1);
+  let question = whichQuestion(whichQuiz[0]);
+  let selectedQuestionNumber = selection.slice(-1); //take the last digit from the string
   let idOfRightAnswer = `answer_${question['right_answer']}`;
-  if (selectedQuestionNumber == question['right_answer']) {
-    document.getElementById(selection).parentNode.classList.add('bg-success');
+  if (selectedQuestionNumber == question['right_answer']) { //compare whether the clicked answer matches the correct one 
+    document.getElementById(selection).parentNode.classList.add('bg-success'); //colours the field green
   } else {
-    document.getElementById(selection).parentNode.classList.add('bg-danger');
+    document.getElementById(selection).parentNode.classList.add('bg-danger'); //colours the field red
     document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
   }
-  document.getElementById('next-button').disabled = false; 
+  document.getElementById('next-button').disabled = false; //makes the button unclickable
 }
 
-function save() {
+function nextQuestion() {
+  let question = whichQuiz[0];
+  question[0]['currentQuestion']++; //value of the question from the corresponding quiz is increased
+  document.getElementById('next-button').disabled = true; //makes the button clickable
+  save();
+  load();
+  resetAnswerButtons();
+  showQuestion(question);
+}
+
+function resetAnswerButtons() { //removes the colouring of the field
+  document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
+  document.getElementById('answer_2').parentNode.classList.remove('bg-danger');
+  document.getElementById('answer_3').parentNode.classList.remove('bg-danger');
+  document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
+  document.getElementById('answer_1').parentNode.classList.remove('bg-success');
+  document.getElementById('answer_2').parentNode.classList.remove('bg-success');
+  document.getElementById('answer_3').parentNode.classList.remove('bg-success');
+  document.getElementById('answer_4').parentNode.classList.remove('bg-success');
+}
+
+function save() { 
   let whichQuizAtText = JSON.stringify(whichQuiz);
+  let questsionsElectronicsAtText = JSON.stringify(questsionsElectronics);
+  let questsionsBiologyAtText = JSON.stringify(questsionsBiology);
+  let questsionsAnimalsAtText = JSON.stringify(questsionsAnimals);
+  let questsionsGeologyAtText = JSON.stringify(questsionsGeology);
   localStorage.setItem('whichquiz', whichQuizAtText);
+  localStorage.setItem('questsionselectronics', questsionsElectronicsAtText);
+  localStorage.setItem('questsionsbiology', questsionsBiologyAtText);
+  localStorage.setItem('questsionsanimals', questsionsAnimalsAtText);
+  localStorage.setItem('questsionsgeology', questsionsGeologyAtText);
 }
 
-function load() {
+function load() { 
   let whichQuizAtText = localStorage.getItem('whichquiz');
-  if (whichQuizAtText) {
+  let questsionsElectronicsAtText = localStorage.getItem('questsionselectronics');
+  let questsionsBiologyAtText = localStorage.getItem('questsionsbiology');
+  let questsionsAnimalsAtText = localStorage.getItem('questsionsanimals');
+  let questsionsGeologyAtText = localStorage.getItem('questsionsgeology');
+  if (whichQuizAtText && questsionsElectronicsAtText && questsionsBiologyAtText && questsionsAnimalsAtText && questsionsGeologyAtText) {
     whichQuiz = JSON.parse(whichQuizAtText);
+    questsionsElectronics = JSON.parse(questsionsElectronicsAtText);
+    questsionsBiology = JSON.parse(questsionsBiologyAtText);
+    questsionsAnimals = JSON.parse(questsionsAnimalsAtText);
+    questsionsGeology = JSON.parse(questsionsGeologyAtText);
   }
 }
 
@@ -100,7 +134,7 @@ function generaterQuizContent() {
   </div>
 <div class="footer-card">
    <div class="quiz-counter"><b>1</b> von <b id="all-questions">5</b> Fragen</div>
-   <button class="btn btn-primary quiz-button" type="submit" id="next-button" disabled>Nächste Frage</button>
+   <button onclick="nextQuestion()" class="btn btn-primary quiz-button" type="submit" id="next-button" disabled>Nächste Frage</button>
 </div>
   `;
 }
