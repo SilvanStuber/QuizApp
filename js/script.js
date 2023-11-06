@@ -32,10 +32,12 @@ function answer(selection) {
   let questions = whichQuiz;
   let question = whichQuestion(questions[0]);
   let selectedQuestionNumber = selection.slice(-1);
+  let idOfRightAnswer = `answer_${question['right_answer']}`;
   if (selectedQuestionNumber == question['right_answer']) {
     document.getElementById(selection).parentNode.classList.add('bg-success');
   } else {
     document.getElementById(selection).parentNode.classList.add('bg-danger');
+    document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
   }
 }
 
