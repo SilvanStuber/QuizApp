@@ -1,12 +1,12 @@
 function init() {
-  load()
+  load();
   document.getElementById('content').innerHTML = generateHomePage(); //load start screen
 }
 
 function startQuiz(questions) {
-  document.getElementById('content').innerHTML = generaterQuizContent(questions); 
+  document.getElementById('content').innerHTML = generaterQuizContent(questions);
   document.getElementById('all-questions').innerHTML = questions.length - 1; //generates the number of questions based on the quiz
-  document.getElementById('current-question').innerHTML = questions[0]['currentQuestion'];
+  document.getElementById('question-number').innerHTML = questions[0]['currentQuestion']; //generates the value of the current question
   showQuestion(questions);
   whichQuiz = [];
   whichQuiz.push(questions);
@@ -14,15 +14,21 @@ function startQuiz(questions) {
 }
 
 function showQuestion(questions) { //loads the corresponding quiz
-  let question = whichQuestion(questions); 
-  document.getElementById('questiontext').innerHTML = question['question'];
-  document.getElementById('answer_1').innerHTML = question['answer_1'];
-  document.getElementById('answer_2').innerHTML = question['answer_2'];
-  document.getElementById('answer_3').innerHTML = question['answer_3'];
-  document.getElementById('answer_4').innerHTML = question['answer_4'];
+  let question = whichQuestion(questions);
+  if (questions[0]['currentQuestion'] >= questions.length) { //value of the question has the length of the array
+    document.getElementById('content').innerHTML = ``;//clear the content
+    questions[0]['currentQuestion'] = [1]; //sets the value of the question to 1
+  } else { //if the value of the question is less than the length of the array load question and answer
+    document.getElementById('questiontext').innerHTML = question['question'];
+    document.getElementById('answer_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_4').innerHTML = question['answer_4'];
+  }
+  save();
 }
 
-function whichQuestion(questions) {  
+function whichQuestion(questions) {
   let valueFromQuestion = questions[0]['currentQuestion']; //defines which quiz and the corresponding question
   let question = questions[valueFromQuestion];
   return (question);
@@ -45,10 +51,9 @@ function nextQuestion() {
   let question = whichQuiz[0];
   question[0]['currentQuestion']++; //value of the question from the corresponding quiz is increased
   document.getElementById('next-button').disabled = true; //makes the button clickable
-  save();
-  load();
   resetAnswerButtons();
   startQuiz(question);
+  save();
 }
 
 function resetAnswerButtons() { //removes the colouring of the field
@@ -62,7 +67,7 @@ function resetAnswerButtons() { //removes the colouring of the field
   document.getElementById('answer_4').parentNode.classList.remove('bg-success');
 }
 
-function save() { 
+function save() {
   let whichQuizAtText = JSON.stringify(whichQuiz);
   let questsionsElectronicsAtText = JSON.stringify(questsionsElectronics);
   let questsionsBiologyAtText = JSON.stringify(questsionsBiology);
@@ -75,7 +80,7 @@ function save() {
   localStorage.setItem('questsionsgeology', questsionsGeologyAtText);
 }
 
-function load() { 
+function load() {
   let whichQuizAtText = localStorage.getItem('whichquiz');
   let questsionsElectronicsAtText = localStorage.getItem('questsionselectronics');
   let questsionsBiologyAtText = localStorage.getItem('questsionsbiology');
@@ -134,7 +139,7 @@ function generaterQuizContent() {
     </div>
   </div>
 <div class="footer-card">
-   <div class="quiz-counter"><b id="current-question"></b> von <b id="all-questions"></b> Fragen</div>
+   <div class="quiz-counter"><b id="question-number"></b> von <b id="all-questions"></b> Fragen</div>
    <button onclick="nextQuestion()" class="btn btn-primary quiz-button" type="submit" id="next-button" disabled>Nächste Frage</button>
 </div>
   `;

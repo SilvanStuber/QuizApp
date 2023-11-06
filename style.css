@@ -98,7 +98,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(24,60,232, 0.8);
+  background-color: rgba(24, 60, 232, 0.8);
   color: white;
   width: 32px;
   height: 32px;
@@ -109,19 +109,17 @@ body {
 .footer-card {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-bottom: 12px;
-}
-
-.quiz-button {
-  margin-left: 24px;
-  margin-right: 24px;
+  padding-left: 48px;
+  padding-right: 48px;
 }
 
 .quiz-button:hover {
   transform: scale(1.1);
 }
 
-.bg-success, .bg-danger {
- color: white !important;
+.bg-success,
+.bg-danger {
+  color: white !important;
 }
