@@ -6,6 +6,7 @@ function init() {
 function startQuiz(questions) {
   document.getElementById('content').innerHTML = generaterQuizContent(questions); 
   document.getElementById('all-questions').innerHTML = questions.length - 1; //generates the number of questions based on the quiz
+  document.getElementById('current-question').innerHTML = questions[0]['currentQuestion'];
   showQuestion(questions);
   whichQuiz = [];
   whichQuiz.push(questions);
@@ -47,7 +48,7 @@ function nextQuestion() {
   save();
   load();
   resetAnswerButtons();
-  showQuestion(question);
+  startQuiz(question);
 }
 
 function resetAnswerButtons() { //removes the colouring of the field
@@ -133,7 +134,7 @@ function generaterQuizContent() {
     </div>
   </div>
 <div class="footer-card">
-   <div class="quiz-counter"><b>1</b> von <b id="all-questions">5</b> Fragen</div>
+   <div class="quiz-counter"><b id="current-question"></b> von <b id="all-questions"></b> Fragen</div>
    <button onclick="nextQuestion()" class="btn btn-primary quiz-button" type="submit" id="next-button" disabled>Nächste Frage</button>
 </div>
   `;
