@@ -109,19 +109,16 @@ body {
 .footer-card {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-bottom: 12px;
 }
 
-.arrow {
-  height: 32px;
-  cursor: pointer;
-  transition: all 125ms ease-in-out;
-  padding-left: 24px;
-  padding-right: 24px;
+.quiz-button {
+  margin-left: 24px;
+  margin-right: 24px;
 }
 
-.arrow:hover {
+.quiz-button:hover {
   transform: scale(1.1);
 }
 

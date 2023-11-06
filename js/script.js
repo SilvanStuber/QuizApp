@@ -14,6 +14,7 @@ function startQuiz(i) {
 }
 
 function showQuestion(questions) {
+  
   let question = whichQuestion(questions);
   document.getElementById('questiontext').innerHTML = question['question'];
   document.getElementById('answer_1').innerHTML = question['answer_1'];
@@ -39,6 +40,7 @@ function answer(selection) {
     document.getElementById(selection).parentNode.classList.add('bg-danger');
     document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
   }
+  document.getElementById('next-button').disabled = false; 
 }
 
 function save() {
@@ -97,9 +99,8 @@ function generaterQuizContent() {
     </div>
   </div>
 <div class="footer-card">
-  <img class="arrow" src="./img/arrowleft.png" alt="arrowleft." />
-  <div><b>1</b> von <b id="all-questions">5</b> Fragen</div>
-  <img class="arrow" src="./img/arrowright.png" alt="arrowright" />
+   <div class="quiz-counter"><b>1</b> von <b id="all-questions">5</b> Fragen</div>
+   <button class="btn btn-primary quiz-button" type="submit" id="next-button" disabled>Nächste Frage</button>
 </div>
   `;
 }
