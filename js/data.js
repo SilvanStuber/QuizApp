@@ -1,6 +1,9 @@
 let questsionsElectronics = [
   {
-    "currentQuestion": 1,
+    "currentQuestion": 2,
+  },
+  {
+    "rightQuestion": 0,
   },
   {
     "question": "Was ist ein Transistor?",
@@ -70,7 +73,10 @@ let questsionsElectronics = [
 
 let questsionsBiology = [
   {
-    "currentQuestion": 1,
+    "currentQuestion": 2,
+  },
+  {
+    "rightQuestion": 0,
   },
   {
     "question": "Was ist die grundlegende Einheit des Lebens?",
@@ -124,7 +130,10 @@ let questsionsBiology = [
 
 let questsionsAnimals = [
   {
-    "currentQuestion": 1,
+    "currentQuestion": 2,
+  },
+  {
+    "rightQuestion": 0,
   },
   {
     "question": "Welches Tier ist für seine acht Arme und seine Intelligenz bekannt?",
@@ -186,7 +195,10 @@ let questsionsAnimals = [
 
 let questsionsGeology = [
   {
-    "currentQuestion": 1,
+    "currentQuestion": 2,
+  },
+  {
+    "rightQuestion": 0,
   },
   {
     "question": "Welcher Begriff beschreibt die Bewegung der tektonischen Platten?",
@@ -231,4 +243,5 @@ let questsionsGeology = [
 ];
 
 let whichQuiz = [];
+
 

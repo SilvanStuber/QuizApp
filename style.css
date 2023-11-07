@@ -123,3 +123,31 @@ body {
 .bg-danger {
   color: white !important;
 }
+
+.endscreen-container {
+  background-color: rgb(247, 213, 187);
+  border-radius: 100%;
+  height: 500px;
+  width: 500px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.endscreen-background-img {
+  margin-top: 32px;
+  height: 200px;
+  object-fit: cover;
+  padding-bottom: 32px;
+}
+
+.your-score-container {
+  padding-top: 56px;
+  padding-bottom: 40px;
+}
+
+.your-score-text {
+  color: blue;
+  padding-right: 56px;
+}

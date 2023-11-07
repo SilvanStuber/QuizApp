@@ -5,8 +5,8 @@ function init() {
 
 function startQuiz(questions) {
   document.getElementById('content').innerHTML = generaterQuizContent(questions);
-  document.getElementById('all-questions').innerHTML = questions.length - 1; //generates the number of questions based on the quiz
-  document.getElementById('question-number').innerHTML = questions[0]['currentQuestion']; //generates the value of the current question
+  document.getElementById('all-questions').innerHTML = questions.length - 2; //generates the number of questions based on the quiz
+  document.getElementById('question-number').innerHTML = questions[0]['currentQuestion'] - 1; //generates the value of the current question
   showQuestion(questions);
   whichQuiz = [];
   whichQuiz.push(questions);
@@ -17,7 +17,9 @@ function showQuestion(questions) { //loads the corresponding quiz
   let question = whichQuestion(questions);
   if (questions[0]['currentQuestion'] >= questions.length) { //value of the question has the length of the array
     document.getElementById('content').innerHTML = ``;//clear the content
-    questions[0]['currentQuestion'] = [1]; //sets the value of the question to 1
+    document.getElementById('content').innerHTML = generateEndScreen(questions);
+    document.getElementById('amount-of-questions').innerHTML = questions.length - 2;
+    document.getElementById('amount-of-right-questions').innerHTML = questions[1]['rightQuestion'];
   } else { //if the value of the question is less than the length of the array load question and answer
     document.getElementById('questiontext').innerHTML = question['question'];
     document.getElementById('answer_1').innerHTML = question['answer_1'];
@@ -35,11 +37,13 @@ function whichQuestion(questions) {
 }
 
 function answer(selection) {
+  let nameOfTheQuiz = whichQuiz[0];
   let question = whichQuestion(whichQuiz[0]);
   let selectedQuestionNumber = selection.slice(-1); //take the last digit from the string
   let idOfRightAnswer = `answer_${question['right_answer']}`;
   if (selectedQuestionNumber == question['right_answer']) { //compare whether the clicked answer matches the correct one 
     document.getElementById(selection).parentNode.classList.add('bg-success'); //colours the field green
+    nameOfTheQuiz[1]['rightQuestion']++; //increases the number of correct questions
   } else {
     document.getElementById(selection).parentNode.classList.add('bg-danger'); //colours the field red
     document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
@@ -48,12 +52,21 @@ function answer(selection) {
 }
 
 function nextQuestion() {
-  let question = whichQuiz[0];
-  question[0]['currentQuestion']++; //value of the question from the corresponding quiz is increased
+  let nameOfTheQuiz = whichQuiz[0];
+  nameOfTheQuiz[0]['currentQuestion']++; //value of the question from the corresponding quiz is increased
   document.getElementById('next-button').disabled = true; //makes the button clickable
   resetAnswerButtons();
-  startQuiz(question);
+  startQuiz(nameOfTheQuiz);
   save();
+}
+
+function replayQuiz() {
+  let nameOfTheQuiz = whichQuiz[0];
+  nameOfTheQuiz[0]['currentQuestion'] = 2;
+  nameOfTheQuiz[1]['rightQuestion'] = 0;
+  whichQuiz = [];
+  save();
+  init();
 }
 
 function resetAnswerButtons() { //removes the colouring of the field
@@ -142,5 +155,18 @@ function generaterQuizContent() {
    <div class="quiz-counter"><b id="question-number"></b> von <b id="all-questions"></b> Fragen</div>
    <button onclick="nextQuestion()" class="btn btn-primary quiz-button" type="submit" id="next-button" disabled>Nächste Frage</button>
 </div>
+  `;
+}
+
+function generateEndScreen() {
+  return /*html*/ `
+  <div class="endscreen-container">
+    <img  class="endscreen-background-img" src="./img/endscreen.png" alt="">
+    <b>COMPLETE</b>
+    <b> QUIZ</b>
+    <div class="your-score-container"><b class="your-score-text">YOUR SCORE</b> <b id="amount-of-right-questions"></b> / <b id="amount-of-questions"></b></div>
+    <button onclick="replayQuiz()" class="btn btn-primary quiz-button" type="submit">REPLAY</button>
+</div>
+  </div>
   `;
 }
