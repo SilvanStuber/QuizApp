@@ -1,6 +1,10 @@
 function init() {
   load();
-  document.getElementById('content').innerHTML = generateHomePage(); //load start screen
+  if (whichQuiz.length == 0) {
+    document.getElementById('content').innerHTML = generateHomePage(); //load start screen
+  } else { 
+    startQuiz(whichQuiz[0]);
+  }
 }
 
 function startQuiz(questions) {
