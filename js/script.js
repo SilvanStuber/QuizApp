@@ -3,7 +3,7 @@ function init() {
   if (whichQuiz.length == 0) {
     document.getElementById('content').innerHTML = generateHomePage(); //load start screen
   } else { 
-    startQuiz(whichQuiz[0]);
+    startQuiz(whichQuiz[0]); //load quiz
   }
 }
 
@@ -18,13 +18,16 @@ function startQuiz(questions) {
 }
 
 function showQuestion(questions) { //loads the corresponding quiz
-  let question = whichQuestion(questions);
   if (questions[0]['currentQuestion'] >= questions.length) { //value of the question has the length of the array
     document.getElementById('content').innerHTML = ``;//clear the content
     document.getElementById('content').innerHTML = generateEndScreen(questions);
     document.getElementById('amount-of-questions').innerHTML = questions.length - 2;
     document.getElementById('amount-of-right-questions').innerHTML = questions[1]['rightQuestion'];
   } else { //if the value of the question is less than the length of the array load question and answer
+    let percent = Math.round(((questions[0]['currentQuestion'] - 1) / (questions.length -2)) * 100); //calculates the progress in percent
+    document.getElementById('progress-bar').innerHTML = `${percent} %`;
+    document.getElementById('progress-bar').style = `width: ${percent}%`;
+    let question = whichQuestion(questions);
     document.getElementById('questiontext').innerHTML = question['question'];
     document.getElementById('answer_1').innerHTML = question['answer_1'];
     document.getElementById('answer_2').innerHTML = question['answer_2'];
@@ -155,10 +158,10 @@ function generaterQuizContent() {
       </div>
     </div>
   </div>
-<div class="footer-card">
+  <div class="footer-card">
    <div class="quiz-counter"><b id="question-number"></b> von <b id="all-questions"></b> Fragen</div>
    <button onclick="nextQuestion()" class="btn btn-primary quiz-button" type="submit" id="next-button" disabled>Nächste Frage</button>
-</div>
+  </div>
   `;
 }
 

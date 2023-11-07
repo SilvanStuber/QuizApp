@@ -151,3 +151,7 @@ body {
   color: blue;
   padding-right: 56px;
 }
+
+.progress {
+  z-index: 999 !important;
+}
