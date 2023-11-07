@@ -153,5 +153,5 @@ body {
 }
 
 .progress {
-  z-index: 999 !important;
+  border-radius: 0 !important;
 }
