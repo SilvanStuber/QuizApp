@@ -25,8 +25,8 @@ function showQuestion(questions) { //loads the corresponding quiz
     document.getElementById('amount-of-right-questions').innerHTML = questions[1]['rightQuestion'];
   } else { //if the value of the question is less than the length of the array load question and answer
     let percent = Math.round(((questions[0]['currentQuestion'] - 1) / (questions.length -2)) * 100); //calculates the progress in percent
-    document.getElementById('progress-bar').innerHTML = `${percent} %`;
-    document.getElementById('progress-bar').style = `width: ${percent}%`;
+    document.getElementById('progress-bar').innerHTML = `${percent} %`;//changes the value in percent
+    document.getElementById('progress-bar').style = `width: ${percent}%`;//changes the optical progress
     let question = whichQuestion(questions);
     document.getElementById('questiontext').innerHTML = question['question'];
     document.getElementById('answer_1').innerHTML = question['answer_1'];
@@ -50,10 +50,12 @@ function answer(selection) {
   let idOfRightAnswer = `answer_${question['right_answer']}`;
   if (selectedQuestionNumber == question['right_answer']) { //compare whether the clicked answer matches the correct one 
     document.getElementById(selection).parentNode.classList.add('bg-success'); //colours the field green
+    AUDIO_SUCCESS.play();
     nameOfTheQuiz[1]['rightQuestion']++; //increases the number of correct questions
   } else {
     document.getElementById(selection).parentNode.classList.add('bg-danger'); //colours the field red
     document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+    AUDIO_FAIL.play();
   }
   document.getElementById('next-button').disabled = false; //makes the button unclickable
 }
