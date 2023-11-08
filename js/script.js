@@ -119,7 +119,10 @@ function load() {
 
 function generateHomePage() {
   return /*html*/ `
-  <img class="home-page-background" src="./img/bg.png" alt="bg">
+  <div class="home-page-container">
+    <h1>Willkommen beim Quiz App</h1>
+    <p> Wähle deine Kategorie und starte das Abenteuer des Wissens!</p>
+  </div>
   `;
 }
 
