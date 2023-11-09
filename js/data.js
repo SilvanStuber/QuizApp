@@ -176,14 +176,6 @@ let questsionsAnimals = [
     "right_answer": 2,
   },
   {
-    "question": "Welches Merkmal ist charakteristisch für Säugetiere, aber nicht für andere Tiergruppen?",
-    "answer_1": "Atmung mit Lungen",
-    "answer_2": "Vorhandensein von Wirbelsäule",
-    "answer_3": "Produktion von Milch zur Ernährung ihrer Jungen",
-    "answer_4": "Vier Gliedmaßen",
-    "right_answer": 3,
-  },
-  {
     "question": "Was ist eine einzigartige Fähigkeit der Chamäleons?",
     "answer_1": "Sie können ihre Hautfarbe an die Umgebung anpassen",
     "answer_2": "Sie können über 1000 Meter hoch fliegen",

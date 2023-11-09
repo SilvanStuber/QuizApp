@@ -13,17 +13,27 @@ body {
 }
 
 .home-page-container {
- background-image: url(img/bg.png);
- background-size: cover;
- display: flex;
- justify-content: center;
- align-items: center;
- flex-direction: column;
- width: 100%;
- height: 100%;
- gap: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 24px;
+  width: 100%;
+  height: 100%;
+  gap: 24px;
 }
 
+.home-page-headline {
+  font-size: 32px;
+}
+
+.home-page-secondline {
+  font-size: 14px;
+}
+
+.home-page-logo {
+  height: 160px;
+}
 
 .card-container {
   height: 70vh;
@@ -70,7 +80,8 @@ body {
 }
 
 .card-title {
-  font-size: 32px;
+  font-size: 22px;
+  padding-top: 56px !important;
   padding-bottom: 12px;
 }
 
@@ -80,6 +91,7 @@ body {
   align-items: center;
   flex-direction: column;
   width: 80% !important;
+  min-height: 500px;
   background-color: rgb(247, 247, 246);
   object-fit: cover;
 }
@@ -162,4 +174,112 @@ body {
 
 .progress {
   border-radius: 0 !important;
+}
+
+@media (max-width: 1200px) {
+  .endscreen-container {
+    height: 380px;
+    width: 380px;
+  }
+  .endscreen-background-img {
+    margin-top: 24px;
+    padding-bottom: 24px;
+  }
+  .your-score-container {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .home-page-headline {
+    font-size: 26px !important;
+  }
+
+  .home-page-secondline {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 850px) {
+  body {
+    background-color: white !important;
+  }
+  .content-container {
+    display: unset;
+    width: 100% !important;
+  }
+  .card {
+    width: 100%;
+    --bs-card-border-color: white !important;
+  }
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;
+  }
+  .card-selection {
+    width: 100% !important;
+    background-color: white !important;
+  }
+  .category-container {
+    flex-direction: row;
+    margin-top: 16px;
+    padding: 8px;
+    font-size: 12px;
+    border-bottom: solid 1px rgb(24, 60, 232);
+  }
+
+  .category {
+    color: rgb(24, 60, 232);
+  }
+
+  .category:hover {
+    border-left: transparent;
+  }
+
+  .logo-quizapp {
+    display: none;
+  }
+  .card-container {
+    height: 100% !important;
+    width: 100%;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .question-answer-container {
+    width: 100% !important;
+    background-color: white !important;
+  }
+
+  .answer-container {
+    width: 100% !important;
+  }
+
+  .footer-card {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 420px) {
+  .home-page-container {
+    padding: 12px;
+  }
+  .home-page-headline {
+    font-size: 20px !important;
+  }
+
+  .home-page-secondline {
+    font-size: 10px;
+  }
+  .endscreen-container {
+    height: 350px;
+    width: 350px;
+  }
+  .endscreen-background-img {
+    margin-top: 20px;
+    height: 160px;
+    padding-bottom: 20px;
+  }
 }
