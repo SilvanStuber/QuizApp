@@ -2,9 +2,13 @@ function init() {
   load();
   if (whichQuiz.length == 0) {
     document.getElementById('content').innerHTML = generateHomePage(); //load start screen
-  } else { 
+  } else {
     startQuiz(whichQuiz[0]); //load quiz
   }
+}
+
+function loadImpressum() {
+  document.getElementById('content').innerHTML = generaterImpressum();
 }
 
 function startQuiz(questions) {
@@ -24,7 +28,7 @@ function showQuestion(questions) { //loads the corresponding quiz
     document.getElementById('amount-of-questions').innerHTML = questions.length - 2;
     document.getElementById('amount-of-right-questions').innerHTML = questions[1]['rightQuestion'];
   } else { //if the value of the question is less than the length of the array load question and answer
-    let percent = Math.round(((questions[0]['currentQuestion'] - 1) / (questions.length -2)) * 100); //calculates the progress in percent
+    let percent = Math.round(((questions[0]['currentQuestion'] - 1) / (questions.length - 2)) * 100); //calculates the progress in percent
     document.getElementById('progress-bar').innerHTML = `${percent} %`;//changes the value in percent
     document.getElementById('progress-bar').style = `width: ${percent}%`;//changes the optical progress
     let question = whichQuestion(questions);
@@ -124,6 +128,25 @@ function generateHomePage() {
     <p class="home-page-secondline"> Wähle deine Kategorie und starte das Abenteuer des Wissens!</p>
     <img class="home-page-logo" src="./img/homepagelogo.png" alt="homepagelogo">
   </div>
+  `;
+}
+
+function generaterImpressum() {
+  return /*html*/ `
+      <div class="impressum">
+      <h1 class="impressum-headline">Impressum</h1>
+      <p>
+        Silvan Stuber<br />
+        Bernstrasse 46<br />
+        3267 Seedorf
+      </p>
+      <h2 class="second-headline-impressum">Contact</h2>
+      <a class="link-impressum" href="mailto:silvan.stuber1@gmail.com">E-Mail: silvan.stuber1@gmail.com</a>
+      <h2 class="second-headline-impressum">The icons, images and sounds are from</h2>
+      <a class="link-impressum" href="https://pixabay.com/" rel="nofollow" target="_blank">pixabay</a>
+      <a class="link-impressum" href="https://www.pexels.com/" rel="nofollow" target="_blank">pexels</a>
+      <a class="link-impressum" href="https://https://freesound.org//" rel="nofollow" target="_blank">freesound</a>
+    </div>
   `;
 }
 

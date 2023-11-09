@@ -2,6 +2,55 @@ body {
   margin: 0;
   background-color: rgb(33, 28, 60) !important;
   height: 100vh;
+  overflow: hidden;
+}
+
+.navbar-brand {
+  cursor: pointer;
+  transition: all 125ms ease-in-out;
+}
+
+.navbar-impressum {
+  cursor: pointer;
+  transition: all 125ms ease-in-out;
+}
+
+.navbar-brand:hover {
+ color: rgb(24, 60, 232) !important;
+ transform: scale(1.1);
+}
+
+.navbar-impressum:hover {
+  color: rgb(24, 60, 232);
+  transform: scale(1.1);
+}
+
+.impressum-headline {
+  font-size: 32px;
+}
+
+.second-headline-impressum {
+  font-size: 16px;
+}
+
+.link-impressum {
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+  padding-bottom: 12px;
+}
+
+.link-impressum:hover {
+  color: rgb(24, 60, 232);
+}
+
+.impressum {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 24px;
+  gap: 16px;
 }
 
 .content-container {
@@ -74,6 +123,7 @@ body {
   cursor: pointer;
   transition: all 125ms ease-in-out;
 }
+
 .category:hover {
   transform: scale(1.1);
   border-left: 4px solid white;
@@ -228,11 +278,12 @@ body {
   }
 
   .category {
-    color: rgb(24, 60, 232);
+    color: black;
   }
 
   .category:hover {
     border-left: transparent;
+    color: rgb(24, 60, 232);
   }
 
   .logo-quizapp {
