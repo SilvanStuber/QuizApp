@@ -16,8 +16,8 @@ body {
 }
 
 .navbar-brand:hover {
- color: rgb(24, 60, 232) !important;
- transform: scale(1.1);
+  color: rgb(24, 60, 232) !important;
+  transform: scale(1.1);
 }
 
 .navbar-impressum:hover {
@@ -267,7 +267,7 @@ body {
   }
   .card-selection {
     width: 100% !important;
-    background-color: white !important;
+    background-color: rgb(247, 247, 245) !important;
   }
   .category-container {
     flex-direction: row;
@@ -292,7 +292,7 @@ body {
   .card-container {
     height: 100vh !important;
     width: 100%;
-    background-color: rgb(247,247,245);
+    background-color: rgb(247, 247, 245);
   }
 
   .card-title {
