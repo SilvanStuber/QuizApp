@@ -218,9 +218,9 @@ function generateEndScreen() {
   return /*html*/ `
   <div class="endscreen-container">
     <img  class="endscreen-background-img" src="./img/endscreen.png" alt="">
-    <b>COMPLETE</b>
-    <b> QUIZ</b>
-    <div class="your-score-container"><b class="your-score-text">YOUR SCORE</b> <b id="amount-of-right-questions"></b> / <b id="amount-of-questions"></b></div>
+    <b>QUIZ</b>
+    <b>KOMPLETT</b>
+    <div class="your-score-container"><b class="your-score-text">DEINE PUNKTZAHL</b> <b id="amount-of-right-questions"></b> / <b id="amount-of-questions"></b></div>
     <button onclick="replayQuiz()" class="btn btn-primary quiz-button" type="submit">REPLAY</button>
 </div>
   </div>
