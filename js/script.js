@@ -22,23 +22,39 @@ function startQuiz(questions) {
 }
 
 function showQuestion(questions) { //loads the corresponding quiz
-  if (questions[0]['currentQuestion'] >= questions.length) { //value of the question has the length of the array
-    document.getElementById('content').innerHTML = ``;//clear the content
-    document.getElementById('content').innerHTML = generateEndScreen(questions);
-    document.getElementById('amount-of-questions').innerHTML = questions.length - 2;
-    document.getElementById('amount-of-right-questions').innerHTML = questions[1]['rightQuestion'];
+  if (gameIsOver(questions)) { //value of the question has the length of the array
+    showEndscreen(questions);
   } else { //if the value of the question is less than the length of the array load question and answer
-    let percent = Math.round(((questions[0]['currentQuestion'] - 1) / (questions.length - 2)) * 100); //calculates the progress in percent
-    document.getElementById('progress-bar').innerHTML = `${percent} %`;//changes the value in percent
-    document.getElementById('progress-bar').style = `width: ${percent}%`;//changes the optical progress
-    let question = whichQuestion(questions);
-    document.getElementById('questiontext').innerHTML = question['question'];
-    document.getElementById('answer_1').innerHTML = question['answer_1'];
-    document.getElementById('answer_2').innerHTML = question['answer_2'];
-    document.getElementById('answer_3').innerHTML = question['answer_3'];
-    document.getElementById('answer_4').innerHTML = question['answer_4'];
+    updateProgressBar(questions);
+    updateToNextQuestion(questions);
   }
   save();
+}
+
+function gameIsOver(questions) {
+ return questions[0]['currentQuestion'] >= questions.length;
+}
+
+function updateToNextQuestion(questions) {
+  let question = whichQuestion(questions);
+  document.getElementById('questiontext').innerHTML = question['question'];
+  document.getElementById('answer_1').innerHTML = question['answer_1'];
+  document.getElementById('answer_2').innerHTML = question['answer_2'];
+  document.getElementById('answer_3').innerHTML = question['answer_3'];
+  document.getElementById('answer_4').innerHTML = question['answer_4'];
+}
+
+function updateProgressBar(questions) {
+  let percent = Math.round(((questions[0]['currentQuestion'] - 1) / (questions.length - 2)) * 100); //calculates the progress in percent
+  document.getElementById('progress-bar').innerHTML = `${percent} %`;//changes the value in percent
+  document.getElementById('progress-bar').style = `width: ${percent}%`;//changes the optical progress
+}
+
+function showEndscreen(questions) {
+  document.getElementById('content').innerHTML = ``;//clear the content
+  document.getElementById('content').innerHTML = generateEndScreen(questions);
+  document.getElementById('amount-of-questions').innerHTML = questions.length - 2;
+  document.getElementById('amount-of-right-questions').innerHTML = questions[1]['rightQuestion'];
 }
 
 function whichQuestion(questions) {
@@ -52,7 +68,7 @@ function answer(selection) {
   let question = whichQuestion(whichQuiz[0]);
   let selectedQuestionNumber = selection.slice(-1); //take the last digit from the string
   let idOfRightAnswer = `answer_${question['right_answer']}`;
-  if (selectedQuestionNumber == question['right_answer']) { //compare whether the clicked answer matches the correct one 
+  if (rightAnswerSelected(selectedQuestionNumber, question)) { //compare whether the clicked answer matches the correct one 
     document.getElementById(selection).parentNode.classList.add('bg-success'); //colours the field green
     AUDIO_SUCCESS.play();
     nameOfTheQuiz[1]['rightQuestion']++; //increases the number of correct questions
@@ -62,6 +78,10 @@ function answer(selection) {
     AUDIO_FAIL.play();
   }
   document.getElementById('next-button').disabled = false; //makes the button unclickable
+}
+
+function rightAnswerSelected(selectedQuestionNumber, question) {
+ return selectedQuestionNumber == question['right_answer'];
 }
 
 function nextQuestion() {
