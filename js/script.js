@@ -25,14 +25,14 @@ function showQuestion(questions) { //loads the corresponding quiz
   if (gameIsOver(questions)) { //value of the question has the length of the array
     showEndscreen(questions);
   } else { //if the value of the question is less than the length of the array load question and answer
-    updateProgressBar(questions);
     updateToNextQuestion(questions);
   }
+  updateProgressBar(questions);
   save();
 }
 
 function gameIsOver(questions) {
- return questions[0]['currentQuestion'] >= questions.length;
+  return questions[0]['currentQuestion'] >= questions.length;
 }
 
 function updateToNextQuestion(questions) {
@@ -45,7 +45,7 @@ function updateToNextQuestion(questions) {
 }
 
 function updateProgressBar(questions) {
-  let percent = Math.round(((questions[0]['currentQuestion'] - 1) / (questions.length - 2)) * 100); //calculates the progress in percent
+  let percent = Math.round(((questions[0]['currentQuestion'] - 2) / (questions.length - 2)) * 100); //calculates the progress in percent
   document.getElementById('progress-bar').innerHTML = `${percent} %`;//changes the value in percent
   document.getElementById('progress-bar').style = `width: ${percent}%`;//changes the optical progress
 }
@@ -81,7 +81,7 @@ function answer(selection) {
 }
 
 function rightAnswerSelected(selectedQuestionNumber, question) {
- return selectedQuestionNumber == question['right_answer'];
+  return selectedQuestionNumber == question['right_answer'];
 }
 
 function nextQuestion() {
@@ -145,7 +145,7 @@ function generateHomePage() {
   return /*html*/ `
   <div class="home-page-container">
     <h1 class="home-page-headline">Willkommen beim Quiz App</h1>
-    <p class="home-page-secondline"> Wähle deine Kategorie und starte das Abenteuer des Wissens!</p>
+    <p class="home-page-secondline">Wähle deine Kategorie und starte das Abenteuer des Wissens!</p>
     <img class="home-page-logo" src="./img/homepagelogo.png" alt="homepagelogo">
   </div>
   `;
