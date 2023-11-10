@@ -247,7 +247,7 @@ body {
   }
   .card {
     width: 100%;
-    --bs-card-border-color: rgb(247, 247, 245)!important;
+    --bs-card-border-color: rgb(247, 247, 245) !important;
   }
   .card-container {
     display: flex;
@@ -323,5 +323,5 @@ body {
   }
   .your-score-text {
     padding-right: 48px;
-}
+  }
 }

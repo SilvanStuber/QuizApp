@@ -1,9 +1,9 @@
 function init() {
   load();
   if (whichQuiz.length == 0) {
-    document.getElementById('content').innerHTML = generateHomePage(); 
+    document.getElementById('content').innerHTML = generateHomePage();
   } else {
-    startQuiz(whichQuiz[0]); 
+    startQuiz(whichQuiz[0]);
   }
 }
 
@@ -13,20 +13,21 @@ function loadImpressum() {
 
 function startQuiz(questions) {
   document.getElementById('content').innerHTML = generaterQuizContent(questions);
-  document.getElementById('all-questions').innerHTML = questions.length - 2; 
-  document.getElementById('question-number').innerHTML = questions[0]['currentQuestion'] - 1; 
+  document.getElementById('all-questions').innerHTML = questions.length - 2;
+  document.getElementById('question-number').innerHTML = questions[0]['currentQuestion'] - 1;
   showQuestion(questions);
   whichQuiz = [];
   whichQuiz.push(questions);
   save();
 }
 
-function showQuestion(questions) { 
-  if (gameIsOver(questions)) { 
+function showQuestion(questions) {
+  if (gameIsOver(questions)) {
     showEndscreen(questions);
-  } else { 
+  } else {
     updateToNextQuestion(questions);
   }
+  questionAnswered = false;
   updateProgressBar(questions);
   save();
 }
@@ -45,7 +46,7 @@ function updateToNextQuestion(questions) {
 }
 
 function updateProgressBar(questions) {
-  let percent = Math.round(((questions[0]['currentQuestion'] - 2) / (questions.length - 2)) * 100); 
+  let percent = Math.round(((questions[0]['currentQuestion'] - 2) / (questions.length - 2)) * 100);
   document.getElementById('progress-bar').innerHTML = `${percent} %`;
   document.getElementById('progress-bar').style = `width: ${percent}%`;
 }
@@ -58,26 +59,29 @@ function showEndscreen(questions) {
 }
 
 function whichQuestion(questions) {
-  let valueFromQuestion = questions[0]['currentQuestion']; 
+  let valueFromQuestion = questions[0]['currentQuestion'];
   let question = questions[valueFromQuestion];
   return (question);
 }
 
 function answer(selection) {
-  let nameOfTheQuiz = whichQuiz[0];
-  let question = whichQuestion(whichQuiz[0]);
-  let selectedQuestionNumber = selection.slice(-1); 
-  let idOfRightAnswer = `answer_${question['right_answer']}`;
-  if (rightAnswerSelected(selectedQuestionNumber, question)) { 
-    document.getElementById(selection).parentNode.classList.add('bg-success'); 
-    AUDIO_SUCCESS.play();
-    nameOfTheQuiz[1]['rightQuestion']++; 
-  } else {
-    document.getElementById(selection).parentNode.classList.add('bg-danger'); 
-    document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
-    AUDIO_FAIL.play();
+  if (!questionAnswered) {
+    questionAnswered = true;
+    let nameOfTheQuiz = whichQuiz[0];
+    let question = whichQuestion(whichQuiz[0]);
+    let selectedQuestionNumber = selection.slice(-1);
+    let idOfRightAnswer = `answer_${question['right_answer']}`;
+    if (rightAnswerSelected(selectedQuestionNumber, question)) {
+      document.getElementById(selection).parentNode.classList.add('bg-success');
+      AUDIO_SUCCESS.play();
+      nameOfTheQuiz[1]['rightQuestion']++;
+    } else {
+      document.getElementById(selection).parentNode.classList.add('bg-danger');
+      document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+      AUDIO_FAIL.play();
+    }
+    document.getElementById('next-button').disabled = false;
   }
-  document.getElementById('next-button').disabled = false; 
 }
 
 function rightAnswerSelected(selectedQuestionNumber, question) {
@@ -86,8 +90,9 @@ function rightAnswerSelected(selectedQuestionNumber, question) {
 
 function nextQuestion() {
   let nameOfTheQuiz = whichQuiz[0];
-  nameOfTheQuiz[0]['currentQuestion']++; 
-  document.getElementById('next-button').disabled = true; 
+  questionAnswered = false;
+  nameOfTheQuiz[0]['currentQuestion']++;
+  document.getElementById('next-button').disabled = true;
   resetAnswerButtons();
   startQuiz(nameOfTheQuiz);
   save();
@@ -102,7 +107,7 @@ function replayQuiz() {
   init();
 }
 
-function resetAnswerButtons() { 
+function resetAnswerButtons() {
   document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
   document.getElementById('answer_2').parentNode.classList.remove('bg-danger');
   document.getElementById('answer_3').parentNode.classList.remove('bg-danger');
