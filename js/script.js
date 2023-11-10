@@ -1,9 +1,9 @@
 function init() {
   load();
   if (whichQuiz.length == 0) {
-    document.getElementById('content').innerHTML = generateHomePage(); //load start screen
+    document.getElementById('content').innerHTML = generateHomePage(); 
   } else {
-    startQuiz(whichQuiz[0]); //load quiz
+    startQuiz(whichQuiz[0]); 
   }
 }
 
@@ -13,18 +13,18 @@ function loadImpressum() {
 
 function startQuiz(questions) {
   document.getElementById('content').innerHTML = generaterQuizContent(questions);
-  document.getElementById('all-questions').innerHTML = questions.length - 2; //generates the number of questions based on the quiz
-  document.getElementById('question-number').innerHTML = questions[0]['currentQuestion'] - 1; //generates the value of the current question
+  document.getElementById('all-questions').innerHTML = questions.length - 2; 
+  document.getElementById('question-number').innerHTML = questions[0]['currentQuestion'] - 1; 
   showQuestion(questions);
   whichQuiz = [];
   whichQuiz.push(questions);
   save();
 }
 
-function showQuestion(questions) { //loads the corresponding quiz
-  if (gameIsOver(questions)) { //value of the question has the length of the array
+function showQuestion(questions) { 
+  if (gameIsOver(questions)) { 
     showEndscreen(questions);
-  } else { //if the value of the question is less than the length of the array load question and answer
+  } else { 
     updateToNextQuestion(questions);
   }
   updateProgressBar(questions);
@@ -45,20 +45,20 @@ function updateToNextQuestion(questions) {
 }
 
 function updateProgressBar(questions) {
-  let percent = Math.round(((questions[0]['currentQuestion'] - 2) / (questions.length - 2)) * 100); //calculates the progress in percent
-  document.getElementById('progress-bar').innerHTML = `${percent} %`;//changes the value in percent
-  document.getElementById('progress-bar').style = `width: ${percent}%`;//changes the optical progress
+  let percent = Math.round(((questions[0]['currentQuestion'] - 2) / (questions.length - 2)) * 100); 
+  document.getElementById('progress-bar').innerHTML = `${percent} %`;
+  document.getElementById('progress-bar').style = `width: ${percent}%`;
 }
 
 function showEndscreen(questions) {
-  document.getElementById('content').innerHTML = ``;//clear the content
+  document.getElementById('content').innerHTML = ``;
   document.getElementById('content').innerHTML = generateEndScreen(questions);
   document.getElementById('amount-of-questions').innerHTML = questions.length - 2;
   document.getElementById('amount-of-right-questions').innerHTML = questions[1]['rightQuestion'];
 }
 
 function whichQuestion(questions) {
-  let valueFromQuestion = questions[0]['currentQuestion']; //defines which quiz and the corresponding question
+  let valueFromQuestion = questions[0]['currentQuestion']; 
   let question = questions[valueFromQuestion];
   return (question);
 }
@@ -66,18 +66,18 @@ function whichQuestion(questions) {
 function answer(selection) {
   let nameOfTheQuiz = whichQuiz[0];
   let question = whichQuestion(whichQuiz[0]);
-  let selectedQuestionNumber = selection.slice(-1); //take the last digit from the string
+  let selectedQuestionNumber = selection.slice(-1); 
   let idOfRightAnswer = `answer_${question['right_answer']}`;
-  if (rightAnswerSelected(selectedQuestionNumber, question)) { //compare whether the clicked answer matches the correct one 
-    document.getElementById(selection).parentNode.classList.add('bg-success'); //colours the field green
+  if (rightAnswerSelected(selectedQuestionNumber, question)) { 
+    document.getElementById(selection).parentNode.classList.add('bg-success'); 
     AUDIO_SUCCESS.play();
-    nameOfTheQuiz[1]['rightQuestion']++; //increases the number of correct questions
+    nameOfTheQuiz[1]['rightQuestion']++; 
   } else {
-    document.getElementById(selection).parentNode.classList.add('bg-danger'); //colours the field red
+    document.getElementById(selection).parentNode.classList.add('bg-danger'); 
     document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
     AUDIO_FAIL.play();
   }
-  document.getElementById('next-button').disabled = false; //makes the button unclickable
+  document.getElementById('next-button').disabled = false; 
 }
 
 function rightAnswerSelected(selectedQuestionNumber, question) {
@@ -86,8 +86,8 @@ function rightAnswerSelected(selectedQuestionNumber, question) {
 
 function nextQuestion() {
   let nameOfTheQuiz = whichQuiz[0];
-  nameOfTheQuiz[0]['currentQuestion']++; //value of the question from the corresponding quiz is increased
-  document.getElementById('next-button').disabled = true; //makes the button clickable
+  nameOfTheQuiz[0]['currentQuestion']++; 
+  document.getElementById('next-button').disabled = true; 
   resetAnswerButtons();
   startQuiz(nameOfTheQuiz);
   save();
@@ -102,7 +102,7 @@ function replayQuiz() {
   init();
 }
 
-function resetAnswerButtons() { //removes the colouring of the field
+function resetAnswerButtons() { 
   document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
   document.getElementById('answer_2').parentNode.classList.remove('bg-danger');
   document.getElementById('answer_3').parentNode.classList.remove('bg-danger');
