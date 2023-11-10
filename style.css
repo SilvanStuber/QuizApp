@@ -4,19 +4,9 @@ body {
   height: 100vh;
 }
 
-.navbar-brand {
-  cursor: pointer;
-  transition: all 125ms ease-in-out;
-}
-
 .navbar-impressum {
   cursor: pointer;
   transition: all 125ms ease-in-out;
-}
-
-.navbar-brand:hover {
-  color: rgb(24, 60, 232) !important;
-  transform: scale(1.1);
 }
 
 .navbar-impressum:hover {
@@ -53,7 +43,7 @@ body {
 }
 
 .content-container {
-  min-height: 100vh;
+  min-height: 90vh;
   background-color: rgb(33, 28, 60) !important;
   display: flex;
   justify-content: center;
@@ -249,7 +239,7 @@ body {
 
 @media (max-width: 850px) {
   body {
-    background-color: white !important;
+    background-color: rgb(247, 247, 245) !important;
   }
   .content-container {
     display: unset;
@@ -257,7 +247,7 @@ body {
   }
   .card {
     width: 100%;
-    --bs-card-border-color: white !important;
+    --bs-card-border-color: rgb(247, 247, 245)!important;
   }
   .card-container {
     display: flex;
@@ -289,7 +279,6 @@ body {
     display: none;
   }
   .card-container {
-    height: 100vh !important;
     width: 100%;
     background-color: rgb(247, 247, 245);
   }
@@ -324,12 +313,15 @@ body {
     font-size: 10px;
   }
   .endscreen-container {
-    height: 350px;
-    width: 350px;
+    height: 280px;
+    width: 280px;
   }
   .endscreen-background-img {
     margin-top: 20px;
-    height: 160px;
+    height: 100px;
     padding-bottom: 20px;
   }
+  .your-score-text {
+    padding-right: 48px;
+}
 }
