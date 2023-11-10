@@ -72,13 +72,9 @@ function answer(selection) {
     let selectedQuestionNumber = selection.slice(-1);
     let idOfRightAnswer = `answer_${question['right_answer']}`;
     if (rightAnswerSelected(selectedQuestionNumber, question)) {
-      document.getElementById(selection).parentNode.classList.add('bg-success');
-      AUDIO_SUCCESS.play();
-      nameOfTheQuiz[1]['rightQuestion']++;
+      rightAnswerContent(selection, nameOfTheQuiz);
     } else {
-      document.getElementById(selection).parentNode.classList.add('bg-danger');
-      document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
-      AUDIO_FAIL.play();
+      falseAnswerContent(selection, idOfRightAnswer)
     }
     document.getElementById('next-button').disabled = false;
   }
@@ -86,6 +82,18 @@ function answer(selection) {
 
 function rightAnswerSelected(selectedQuestionNumber, question) {
   return selectedQuestionNumber == question['right_answer'];
+}
+
+function rightAnswerContent(selection, nameOfTheQuiz) {
+  return document.getElementById(selection).parentNode.classList.add('bg-success'),
+    AUDIO_SUCCESS.play(),
+    nameOfTheQuiz[1]['rightQuestion']++;
+}
+
+function falseAnswerContent(selection, idOfRightAnswer) {
+  return  document.getElementById(selection).parentNode.classList.add('bg-danger'),
+  document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success'),
+  AUDIO_FAIL.play();
 }
 
 function nextQuestion() {
